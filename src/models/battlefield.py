@@ -1,5 +1,6 @@
 from .army import Army
 from .army_thread import ArmyThread
+from src.logger.logger import logger
 
 
 class Battlefield():
@@ -31,19 +32,23 @@ class Battlefield():
         return armies
 
     def start_battle(self):
+        logger.info("Battle is starting.")
         armies_threads = []
         for army in self._armies:
             armies_threads.append(ArmyThread(army, self._armies))
 
         for thread in armies_threads:
-            print(f"{thread.getName()} is started")
+            #print(f"{thread.getName()} is started")
+            logger.debug('thread.getName() is srtarted')
             thread.start()
 
         while True:
             if len(self._armies) == 1:
                 print(f'{self._armies[0]} has won battle')
+                logger.debug(f'{self._armies[0]} has won battle')
                 # for thread in armies_threads:
                 #     thread.join()
                 armies_threads = []
-                self._armies = []
+                #self._armies = []
                 break
+        logger.info("End of battle")

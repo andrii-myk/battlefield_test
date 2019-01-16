@@ -25,8 +25,4 @@ class Tank(Vehicle):
         for operator in self._operators:
             sum_oper_exp += (operator.experience / 100)
         return round(0.2 + sum_oper_exp, 2)
-
-tank = Tank(1)
-print(tank._recharge)
-tank._recharge = 20
-print((tank._recharge))
+#print()

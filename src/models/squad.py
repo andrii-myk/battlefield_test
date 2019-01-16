@@ -4,6 +4,7 @@ from time import sleep
 from src.models.units.buggy import Buggy
 from src.models.units.soldier import Soldier
 from src.models.units.tank import Tank
+from src.logger.logger import logger
 
 
 class Squad():
@@ -64,9 +65,11 @@ class Squad():
             if self.compute_att_succ_prob() >= enemy_squad.compute_att_succ_prob():
                 enemy_squad.under_attack(self.damage())
                 self.increase_exp()
-                print(f"{self} has attacked {enemy_squad}")
+                #print(f"{self} has attacked {enemy_squad}")
+                logger.debug(f"{self} has attacked {enemy_squad}")
             else:
-                print(f"{self} has failured to attack {enemy_squad}")
+                #print(f"{self} has failured to attack {enemy_squad}")
+                logger.debug(f"{self} has failured to attack {enemy_squad}")
             self.readiness = False
             self.recharging()
 

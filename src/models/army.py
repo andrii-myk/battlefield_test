@@ -1,5 +1,6 @@
 from random import randint, choice
 from src.models.squad import Squad
+from src.logger.logger import logger
 
 class Army():
     def __init__(self, color: str, number_of_squads: int, att_type: str):
@@ -65,6 +66,7 @@ class Army():
             return True
         else:
             print(f"{self} was totally destroyed")
+            logger.debug(f"{self} was totally destroyed")
             return False
 
     def attack(self, armies: list):
@@ -84,6 +86,4 @@ class Army():
 
     def __repr__(self):
         return f"{self._color.capitalize()} army"
-army = Army('red', 2, 's')
-army._squads = [Squad('tank', 'red', 's', 1), Squad('buggy', 'red', 's', 2)]
-print(army.get_strongest_squad())
+

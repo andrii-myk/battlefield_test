@@ -1,7 +1,7 @@
 from threading import Thread
 
-
 from .army import Army
+from src.logger.logger import logger
 
 
 class ArmyThread(Thread):
@@ -17,7 +17,8 @@ class ArmyThread(Thread):
                 try:
                     self._army.attack(self._armies)
                 except Exception as e:
-                    print('error in attack')
+                    #print('error in attack')
+                    logger.error(f'In {self.getName()} has happened {e}')
                     self._army._squads = []
                     continue
             else:
@@ -26,5 +27,6 @@ class ArmyThread(Thread):
                 break
 
     def __del__(self):
-        print(f"{self.getName()} is stopped")
+        #print(f"{self.getName()} is stopped")
+        logger.debug(f"{self.getName()} is stopped")
 
